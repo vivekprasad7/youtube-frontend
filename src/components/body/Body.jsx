@@ -4,7 +4,7 @@ import MainGrid from '../mainGrid/MainGrid'
 
 const Body = () => {
   return (
-    <div className='flex'>
+    <div className='grid grid-flow-col'>
         <Sidebar/>
         <MainGrid/>
     </div>
