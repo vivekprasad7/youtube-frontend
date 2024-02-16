@@ -22,7 +22,7 @@ const VideoContainer = () => {
 
   return (
     <div>
-      { videos && <AdVideoCard video={videos[0]}/>}
+      {/* { videos && <AdVideoCard video={videos[0]}/>} */}
       {
         videos?.map((video) => <Link  key={video.id} to={"/watch?v=" + video.id} ><VideoCard video={video}/></Link>)
       }
