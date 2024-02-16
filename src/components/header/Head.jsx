@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { toggleMenu } from '../../utils/slices/appSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { YOUTUBE_SEARCH_API } from '../../utils/constants'
+import { cacheResults } from '../../utils/slices/searchSlice'
 
 const Head = () => {
   const [ searchInput, setSearchInput] = useState("")
   const [ searchSuggestions, setSearchSuggestions] = useState([])
   const [showSuggestions, setShowSuggestions] = useState(false)
+
+  const searchCache = useSelector((store) => store.search)
+
+  console.log("searchCache", searchCache)
 
   useEffect(() => {
     // console.log(searchInput)
@@ -14,18 +19,19 @@ const Head = () => {
     // WE need to delay the API calls on every keypress
     // if difference between two keypresses is less than 200ms, decline the call
 
-    const timer = setTimeout(() => getSearchSuggestions(), 200)
+    const timer = setTimeout(() => {
 
-    // const handleScroll = () => {
-    //   setShowSuggestions(false)
-    // }
-    // window.addEventListener('scroll', handleScroll)
+      if(searchCache[searchInput]){
+        setSearchSuggestions(searchCache[searchInput])
+      } else {
+        getSearchSuggestions()       
+      }
 
+    }, 200)
 
 
     return () => {
       clearTimeout(timer)
-      // window.removeEventListener('scroll', handleScroll)
     }
     
 
@@ -34,7 +40,14 @@ const Head = () => {
   const getSearchSuggestions = async () =>{
     const res = await fetch(YOUTUBE_SEARCH_API + searchInput)
     const json = await res.json()
-    console.log(json[1])
+    console.log("API CALL MADE", json[1])
+
+    dispatch(cacheResults(
+      {
+        [searchInput] : json[1]
+      }
+    ))
+
     setSearchSuggestions(json[1])
   }
 
