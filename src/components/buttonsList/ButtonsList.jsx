@@ -9,7 +9,7 @@ const ButtonsList = () => {
     <div className='flex gap-2'>
 
       {
-        list.map((item) => <Button name={item}/>)
+        list.map((item) => <Button key={item} name={item}/>)
       }
  
 

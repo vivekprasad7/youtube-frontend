@@ -3,6 +3,7 @@ import { toggleMenu } from '../../utils/slices/appSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { YOUTUBE_SEARCH_API } from '../../utils/constants'
 import { cacheResults } from '../../utils/slices/searchSlice'
+import { Link } from 'react-router-dom'
 
 const Head = () => {
   const [ searchInput, setSearchInput] = useState("")
@@ -11,7 +12,7 @@ const Head = () => {
 
   const searchCache = useSelector((store) => store.search)
 
-  console.log("searchCache", searchCache)
+  // console.log("searchCache", searchCache)
 
   useEffect(() => {
     // console.log(searchInput)
@@ -40,7 +41,7 @@ const Head = () => {
   const getSearchSuggestions = async () =>{
     const res = await fetch(YOUTUBE_SEARCH_API + searchInput)
     const json = await res.json()
-    console.log("API CALL MADE", json[1])
+    // console.log("API CALL MADE", json[1])
 
     dispatch(cacheResults(
       {
@@ -83,7 +84,15 @@ const Head = () => {
             (<div className='fixed bg-white w-96 px-5 py-2 rounded-lg shadow-lg '>
             <ul className='py-1'>
               { 
-                searchSuggestions?.map((item) => <li key={item} className='py-1 hover:bg-gray-50 px-2 cursor-pointer'>{item}</li>
+                searchSuggestions?.map((item, index) => {
+
+                  const searchItems = item?.split(" ").map(i => ("+" + i)).join("")
+                  console.log(searchItems)
+                  // console.log("item", eachSearchItem.map(i => i))
+                  return(
+                    <li className='hover:bg-gray-50 px-5 py-1 cursor-pointer'>{item}</li>
+                  )
+                }              
                 )
               }
             
@@ -102,3 +111,8 @@ const Head = () => {
 }
 
 export default Head
+
+
+
+
+{/* <li key={index}><Link to={"https://www.youtube.com/results?search_query=" + searchItems}>{item}</Link></li>  */}
