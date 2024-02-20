@@ -4,6 +4,7 @@ import { closeMenu } from '../../utils/slices/appSlice'
 import { useParams, useSearchParams } from 'react-router-dom'
 import  { CommentsContainer } from '../comments/CommentsList'
 import LiveChat from '../liveChat/LiveChat'
+import Sidebar from '../sidebar/Sidebar'
 
 const WatchPage = () => {
 
@@ -19,8 +20,10 @@ const WatchPage = () => {
         dispatch(closeMenu())
     }, [])
     return (
-        <div className='flex flex-col w-full'>
-        <div className='p-5 m-5 w-full flex'>
+        <>
+        <Sidebar/>
+        <div className='flex flex-col w-full p-2 justify-center'>
+        <div className='p-5 w-full flex justify-center'>
             <div>
 
             <iframe width="900" 
@@ -36,12 +39,13 @@ const WatchPage = () => {
                 <LiveChat/>
             </div>
 
-
         </div>
         <div>
             <CommentsContainer/>
         </div>
         </div>
+        </>
+        
     )
 }
 

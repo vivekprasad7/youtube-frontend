@@ -4,24 +4,29 @@ import Head from './components/header/Head'
 import Body from './components/body/Body'
 import { Provider } from "react-redux"
 import store from "./utils/store"
-import {  createBrowserRouter, RouterProvider } from "react-router-dom"
+import {  createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom"
 import WatchPage from "./components/watchPage/watchPage"
 import MainGrid from "./components/mainGrid/MainGrid"
+import Results from "./components/results/Results"
 
-const appRouter = createBrowserRouter([{
-  path:"/",
-  element:<Body/>,
-  children:[
-    {
-      path:"/",
-      element:<MainGrid/>
-    },
-    {
-      path:"watch",
-      element:<WatchPage/>
-    }
-  ]
-}])
+// const appRouter = createBrowserRouter([{
+//   path:"/",
+//   element:<Body/>,
+//   children:[
+//     {
+//       path:"/",
+//       element:<MainGrid/>
+//     },
+//     {
+//       path:"watch",
+//       element:<WatchPage/>
+//     },
+//     {
+//       path:"results",
+//       element:<Results/>
+//     }
+//   ]
+// }])
 
 
 
@@ -32,13 +37,12 @@ function App() {
     <Provider store={store}>
       <div className=''>
         <Head/>
-        <RouterProvider router={appRouter}/>
 
-        {/* <Routes>
-          <Route path={"/watch"} element={<WatchPage/>}/>
-        </Routes> */}
-
-
+        <Routes>
+        <Route path={"/"} element={ <Body/>}/>
+        <Route path={"/results"} element={ <Results/>}/>
+        <Route path={"/watch"} element={ <WatchPage/>}/>
+        </Routes>
       </div>
       </Provider>
     
