@@ -28,8 +28,8 @@ const VideoCard = ({video}) => {
     
 
   return (
-    <div className='py-2 my-2 md:m-2 md:p-2s overflow-hidden w-full md:w-[340px] md:max-w-[340px]'>
-        <img className="md:rounded-lg w-full md:max-w-[340px] aspect-video relative" src={thumbnails.medium.url ? thumbnails.medium.url : thumbnails.default.url} alt="video" />
+    <div className='py-2 my-2 md:m-2 md:p-2s overflow-hidden w-full md:w-[320px] md:max-w-[320px]'>
+        <img className="md:rounded-lg w-full md:max-w-[320px] aspect-video relative" src={thumbnails.medium.url ? thumbnails.medium.url : thumbnails.default.url} alt="video" />
         <ul className='h-[65%] top-1'>
             <li className='font-bold py-2 text-sm text-ellipsis overflow-hidden'>{title}</li>
             <li className='font-bold text-gray-700 '>{channelTitle}</li>

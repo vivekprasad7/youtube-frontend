@@ -107,7 +107,7 @@ const Head = () => {
     <div className='flex justify-between items-center p-3 shadow-lg'>
       <div className='flex justify-between gap-4'>
         <img onClick={() => toggleMenuIcon()} className='h-8 cursor-pointer' src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-45/hamburger-menu-4.png" alt="menu-icon" />
-        <img onClick={() => navigate("/")}className='h-8 cursor-pointer' src="https://youtubespinoff.netlify.app/youtube.svg" alt="youtube-icon" />
+        <img onClick={() => navigate("/")}className='h-8 cursor-pointer' src="./youtube.svg" alt="youtube-icon" />
       </div>
       <div className='relative'>
         <div>
