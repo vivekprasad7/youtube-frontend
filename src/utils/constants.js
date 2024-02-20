@@ -1,4 +1,4 @@
-export const GOOGLE_API_KEY = "AIzaSyDxldTXtp0AWCtX7lVWF1RlQMFhCPhiGvI"
+export const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY
 
 
 export const LIVE_CHAT_OFFSET = 25
